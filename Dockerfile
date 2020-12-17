@@ -22,3 +22,4 @@ RUN git clone git@github.com:labbsr0x/bindman-dns-bind9.git &&\
 
 FROM quay.io/spivegin/bind9:latest
 COPY --from=builder /opt/bin/* /opt/bin/
+RUN chmod +x /opt/bin/bindman && ln -s /opt/bin/bindman /bin/bindman
