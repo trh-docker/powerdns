@@ -4,7 +4,7 @@ RUN mkdir -p /usr/share/man/man1/ &&\
     mkdir -p /usr/share/man/man7/
 ADD files/powerdns/pbns /etc/apt/preferences.d/
 RUN echo deb [arch=amd64] http://repo.powerdns.com/debian stretch-rec-44 main > /etc/apt/sources.list.d/pdns.list &&\
-    curl https://repo.powerdns.com/FD380FBB-pub.asc | apt-key add - &&
+    curl https://repo.powerdns.com/FD380FBB-pub.asc | apt-key add -
 
 RUN apt-get update && apt-get upgrade -y &&\
     apt-get install pdns-server -y &&\
