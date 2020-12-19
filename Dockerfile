@@ -1,4 +1,4 @@
-FROM quay.io/spivegin/tlmbasedebian:latest
+FROM debian:buster-20201209-slim
 ENV DEBIAN_FRONTEND=noninteractive
 RUN mkdir -p /usr/share/man/man1/ &&\
     mkdir -p /usr/share/man/man7/
