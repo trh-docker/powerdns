@@ -15,7 +15,7 @@ WORKDIR /root/
 ADD https://repo.powerdns.com/debian/pool/main/p/pdns/pdns-server_4.4.0-1pdns.stretch_amd64.deb /root/
 ADD https://repo.powerdns.com/debian/pool/main/p/pdns/pdns-backend-pgsql-dbgsym_4.4.0-1pdns.stretch_amd64.deb /root/
 RUN apt-get update && apt-get upgrade -y &&\
-    apt install libluajit-5.1-2 libsodium18 &&\
+    apt-get install libluajit-5.1-2 libsodium18 -y &&\
     dpkg -i pdns-server_4.4.0-1pdns.stretch_amd64.deb -y &&\
     dpkg -i pdns-backend-pgsql-dbgsym_4.4.0-1pdns.stretch_amd64.deb -y &&\
     # apt-get install pdns-server -y &&\
