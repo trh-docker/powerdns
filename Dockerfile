@@ -9,8 +9,17 @@ RUN apt-get update && apt-get upgrade -y &&\
     apt-get install gnupg2 curl -y &&\
     curl https://repo.powerdns.com/FD380FBB-pub.asc | apt-key add - &&\
     apt-get update && apt-get upgrade -y &&\
-    apt-get install pdns-server -y &&\
-    apt-get install pdns-backend-pgsql -y &&\
+    apt-get autoclean && apt-get autoremove &&\
+    rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
+WORKDIR /root/
+ADD https://repo.powerdns.com/debian/pool/main/p/pdns/pdns-server_4.4.0-1pdns.stretch_amd64.deb /root/
+ADD https://repo.powerdns.com/debian/pool/main/p/pdns/pdns-backend-pgsql-dbgsym_4.4.0-1pdns.stretch_amd64.deb /root/
+RUN apt-get update && apt-get upgrade -y &&\
+    apt install libluajit-5.1-2 libsodium18 &&\
+    dpkg -i pdns-server_4.4.0-1pdns.stretch_amd64.deb -y &&
+    dpkg -i pdns-backend-pgsql-dbgsym_4.4.0-1pdns.stretch_amd64.deb -y &&
+    # apt-get install pdns-server -y &&\
+    # apt-get install pdns-backend-pgsql -y &&\
     apt-get autoclean && apt-get autoremove &&\
     rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
 ADD files/powerdns/pdns.conf /etc/powerdns/
