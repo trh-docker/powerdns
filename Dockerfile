@@ -1,7 +1,7 @@
 FROM quay.io/spivegin/tlmbasedebian:latest
 RUN apt-get update && apt-get upgrade -y &&\
     # apt-get install pdns-server pdns-backend-pgsql -y &&\
-    # apt-get install pdns-server -y &&\
+    apt-get install pdns-server -y &&\
     apt-get autoclean && apt-get autoremove &&\
     rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
 ADD files/powerdns/pdns.conf /etc/powerdns/
